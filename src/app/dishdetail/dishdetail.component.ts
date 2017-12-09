@@ -40,6 +40,8 @@ export class DishdetailComponent implements OnInit {
     }
   };
 
+  errMess: string;
+
   constructor(private dishservice: DishService,
     private route: ActivatedRoute,
     private location: Location,
@@ -52,7 +54,8 @@ export class DishdetailComponent implements OnInit {
     this.dishservice.getDishIds().subscribe(dishIds => this.dishIds = dishIds);
     this.route.params
       .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); });
+      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); },
+        errmess => this.errMess = <any>errmess);
   }
 
   setPrevNext(dishId: number) {
