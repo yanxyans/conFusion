@@ -23,6 +23,9 @@ import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
+import { ProcessHttpmsgService } from './services/process-httpmsg.service';
+
+import { baseURL } from './shared/baseurl';
 
 
 @NgModule({
@@ -47,7 +50,11 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [DishService, PromotionService, LeaderService],
+  providers: [DishService,
+    PromotionService,
+    LeaderService,
+    {provide: 'BaseURL', useValue: baseURL},
+    ProcessHttpmsgService],
   bootstrap: [AppComponent],
   entryComponents: [
     LoginComponent
